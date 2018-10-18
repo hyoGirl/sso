@@ -3,34 +3,26 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Hello Thymeleaf!</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{/js/holder.js}"></script>
 
     <style type="text/css">
 
-        div {
-            width: 600px;
-            height:200px;
-            margin: 150px auto;
-            background: #2e6da4;
-            text-aligin: center;
-        }
-
-        input {
-            margin: 10px 20px;
-            background: #ccc;
-
-        }
     </style>
 </head>
 <body>
 
 
-<div>
-    <form th:action="@{/login}" method="post">
-        <input th:type="hidden" name="redirectUrl" th:value="${redirectUrl}"/>
-        账户:<input th:type="text" name="userName"/>
-        密码:<input th:type="text" name="password"/>
-        <input type="submit" value="登录"/>
-    </form>
-</div>
+<form  th:action="@{/login}" method="post">
+
+    <input th:type="hidden" name="redirectUrl" th:value="${redirectUrl}"/>
+    账户：<input th:type="text" name="userName"/>
+    密码：<input th:type="text" name="password"/>
+    <input type="submit" value="登录"/>
+</form>
+
+
 </body>
 </html>

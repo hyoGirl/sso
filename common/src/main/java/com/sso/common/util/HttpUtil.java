@@ -66,6 +66,9 @@ public class HttpUtil {
      * 获取请求路径(具体到context)
      */
     public static String getRequestContextPath(HttpServletRequest request) {
+
+
+        //request.getContextPath() 获取的就是获取端口后的项目根标志
         return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     }
 

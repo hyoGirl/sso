@@ -15,6 +15,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
 
 
-        registry.addInterceptor(new ServerLoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/login","/sso/validateToken/");
+        registry.addInterceptor(new ServerLoginInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/login", "/ssoApi/authToken", "/logout", "/static/**","/templates/**");
     }
 }

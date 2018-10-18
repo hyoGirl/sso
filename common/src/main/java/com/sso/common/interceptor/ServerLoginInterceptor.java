@@ -1,5 +1,6 @@
 package com.sso.common.interceptor;
 
+import com.sso.common.constants.SsoConstants;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,35 +14,44 @@ public class ServerLoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
 
-        HttpSession session = httpServletRequest.getSession();
+        String result = httpServletRequest.getScheme() + "://" + httpServletRequest.getServerName() + ":" + httpServletRequest.getServerPort() + httpServletRequest.getRequestURI();
 
-        System.out.println("服务端拦截器获取的session id "+session.getId());
+        System.err.println("客户端请求访问的地址为： "+result);
+
+
+
+
+
+
+        HttpSession session = httpServletRequest.getSession();
 
         Cookie[] cookies = httpServletRequest.getCookies();
 
-        System.out.println("----------------------");
         for (Cookie cookie : cookies) {
-            System.err.println(cookie.getName()+": "+cookie.getValue());
-        }
-        System.out.println("----------------------");
 
+            System.err.println("服务端拦截器获取到的session: "+cookie.getName()+": "+cookie.getValue());
+
+        }
+
+        System.err.println("服务端拦截器获取的session id "+session.getId());
 
         //服务端获取当前用户是否登录。
-        Object loginFlag = session.getAttribute("login");
+        Object sessionAttribute = session.getAttribute(SsoConstants.SESSION_LOGIN_FLAG);
 
-        System.out.println("服务端拦截器获取到的登录成功标志为： "+loginFlag);
+        System.out.println("服务端拦截器获取到的登录成功标志为： "+sessionAttribute);
 
 
-        String redirectUrl = (String) httpServletRequest.getParameter("redirectUrl");
+        String redirectUrl = httpServletRequest.getParameter(SsoConstants.REDIRECT_PARAM_NAME);
 
-        System.out.println("服务端获取跳转的url为： "+redirectUrl);
+        System.out.println("客户端传递过来跳转的url为： "+redirectUrl);
 
-        if(loginFlag==null){
-            httpServletRequest.setAttribute("redirectUrl",redirectUrl);
+        //如果没登录,跳转到登录页面
+        if(sessionAttribute==null){
+            httpServletRequest.setAttribute(SsoConstants.REDIRECT_PARAM_NAME,redirectUrl);
             httpServletRequest.getRequestDispatcher("/login").forward(httpServletRequest,httpServletResponse);
             return  false;
         }else{
-            httpServletResponse.sendRedirect(redirectUrl + "token" + "=" + loginFlag);
+            httpServletResponse.sendRedirect(redirectUrl  + "?" + SsoConstants.TOKEN_PARAM_NAME + "=" + sessionAttribute.toString());
             return true;
         }
     }

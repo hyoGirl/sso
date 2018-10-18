@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello Thymeleaf!</title>
+
+    <style type="text/css">
+
+        div {
+            width: 600px;
+            height:200px;
+            margin: 150px auto;
+            background: #2e6da4;
+            text-aligin: center;
+        }
+
+        input {
+            margin: 10px 20px;
+            background: #ccc;
+
+        }
+    </style>
+</head>
+<body>
+
+
+<div>
+    <form th:action="@{/user/login2}" method="post">
+        账户:<input th:type="text" name="userName"/>
+        密码:<input th:type="text" name="password"/>
+        <input type="submit" value="客户端登录"/>
+    </form>
+</div>
+</body>
+</html>

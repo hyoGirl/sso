@@ -1,0 +1,9 @@
+
+
+1: git
+https://github.com/a466350665/smart
+
+2:guns -sso
+
+3： session和cookie
+https://www.cnblogs.com/yaowen/p/4819018.html

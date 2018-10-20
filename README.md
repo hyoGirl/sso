@@ -1,6 +1,8 @@
 # sso
 ## 单点登陆以及注销
 
+参考网站：https://www.cnblogs.com/ywlaker/p/6113927.html
+
 - 浏览器第一次请求客户端1
 ```
 

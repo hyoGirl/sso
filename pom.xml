@@ -24,7 +24,7 @@
         <!--<springboot.version>2.0.0.RELEASE</springboot.version>-->
         <springboot.version>1.5.9.RELEASE</springboot.version>
         <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
-        <shiro.version>1.5.0</shiro.version>
+        <shiro.version>1.7.1</shiro.version>
         <mybatis-plus.version>2.1.8</mybatis-plus.version>
         <fastjson.version>1.2.44</fastjson.version>
         <commons.io.version>2.5</commons.io.version>
